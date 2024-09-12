@@ -120,7 +120,7 @@ This project provides a C program for analyzing the schedulability of real-time 
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/NucleiAv/real_time_system_schedule
+    git clone https://github.com/NucleiAv/real_time_system_scheduler
     ```
 
 2. Compile the program:
