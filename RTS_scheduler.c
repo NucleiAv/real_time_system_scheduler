@@ -35,7 +35,7 @@ double liu_layland_bound(int num) {
 int hyperbolic_bound(Task tasks[], int num) {
     double product = 1.0;
     for (int i = 0; i < num; i++) {
-        product *= (tasks[i].Ci / tasks[i].Ti + 1);
+        product *= ((tasks[i].Ci / tasks[i].Ti) + 1);
     }
     return (product <= 2);
 }
