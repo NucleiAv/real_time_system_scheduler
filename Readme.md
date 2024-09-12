@@ -112,7 +112,7 @@ This project provides a C program for analyzing the schedulability of real-time 
 
 ## Files
 
-- `scheduler.c`: Main implementation of the scheduling analysis.
+- `RTS_scheduler.c`: Main implementation of the scheduling analysis.
 - `README.md`: This documentation file.
 
 ## Usage
@@ -120,19 +120,19 @@ This project provides a C program for analyzing the schedulability of real-time 
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/RealTimeSchedulingAnalysis.git
+    git clone https://github.com/NucleiAv/real_time_system_schedule
     ```
 
 2. Compile the program:
 
     ```bash
-    gcc scheduler.c -o scheduler -lm
+    gcc RTS_scheduler.c -o RTS_scheduler -lm
     ```
 
 3. Run the program:
 
     ```bash
-    ./scheduler
+    ./RTS_scheduler
     ```
 
 4. Follow the on-screen prompts to input task parameters and select a scheduling algorithm.
