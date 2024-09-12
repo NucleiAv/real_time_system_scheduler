@@ -4,7 +4,7 @@ Made by Anmol Vats. Don't forget to ⭐
 
 ## Overview
 
-This project provides a C program for analyzing the schedulability of real-time tasks using three common scheduling algorithms:
+This project provides a C program for analyzing and predicting the schedulability of real-time periodic tasks using three common scheduling algorithms:
 - Rate-Monotonic (RM)
 - Deadline-Monotonic (DM)
 - Earliest Deadline First (EDF)
@@ -16,93 +16,77 @@ This project provides a C program for analyzing the schedulability of real-time 
 **Rate-Monotonic Scheduling** assigns priorities based on the task periods: tasks with shorter periods have higher priorities.
 
 - **Necessary Condition**:
-  - All tasks must have **Deadline = Period** (i.e., \( D_i = T_i \) for all tasks).
+  - All tasks must have **Deadline = Period** (i.e., \( $D_i = T_i$ \) for all tasks).
   - **Utilization Factor** \( U \) should be :
   
-    $$
-    U = \sum_{i=1}^{n} \frac{C_i}{T_i}
-    $$
+    $$U = \sum_{i=1}^{n} \frac{C_i}{T_i}$$
     
   - If \( U > 1 \), the task set is not schedulable.
 
 - **Sufficient Conditions**:
   1. **Liu-Layland Bound**: The Liu-Layland Bound for \( n \) tasks is:
 
-  $$  U_{LL} = n \left(2^{\frac{1}{n}} - 1\right)  $$
-     The task set is schedulable under RM if \( U \leq U_{LL} \).
+  $U_{LL} = n \left(2^{\frac{1}{n}} - 1\right)$
+  The task set is schedulable under RM if \( $U \leq U_{LL}$ \).
 
   2. **Hyperbolic Bound**:
   
-     $$
-     \prod_{i=1}^{n} \left(\frac{C_i}{T_i} + 1\right) \leq 2
-     $$
+     $\prod_{i=1}^{n} \left(\frac{C_i}{T_i} + 1\right) \leq 2$
      
      If the hyperbolic bound condition is satisfied, the task set is schedulable.
 
   - **Exact Condition**:
     - **Response Time Analysis (RTA)**:
     
-      The response time \( R_i \) for task \( i \) should not exceed its deadline \( D_i \). The response time analysis involves iterative calculation:
+      The response time \( $R_i$ \) for task \( $i$ \) should not exceed its deadline \( $D_i$ \). The response time analysis involves iterative calculation:
 
-      $$
-      R_i = C_i + \sum_{j=1}^{i-1} \left\lceil \frac{R_i}{T_j} \right\rceil C_j
-      $$
+      $R_i = C_i + \sum_{j=1}^{i-1} \left\lceil \frac{R_i}{T_j} \right\rceil C_j$
       
-      The task set is schedulable if \( R_i \leq D_i \) for all tasks.
+      The task set is schedulable if \( $R_i \leq D_i$ \) for all tasks.
 
 ### Deadline-Monotonic Scheduling (DM)
 
 **Deadline-Monotonic Scheduling** prioritizes tasks based on their deadlines: tasks with earlier deadlines have higher priorities.
 
 - **Necessary Condition**:
-  - All tasks must have **Deadline ≤ Period** (i.e., \( D_i \leq T_i \) for all tasks).
-  - **Utilization Factor** \( U \) should be \( < 1 \):
+  - All tasks must have **Deadline ≤ Period** (i.e., \( $D_i \leq T_i$ \) for all tasks).
+  - **Utilization Factor** \( $U$ \) should be \( $\leq 1$ \):
 
-    $$
-    U = \sum_{i=1}^{n} \frac{C_i}{T_i}
-    $$
+    $U = \sum_{i=1}^{n} \frac{C_i}{T_i}$
 
 - **Exact Condition**:
   - **Response Time Analysis (RTA)**:
 
-    The response time \( R_i \) for task \( i \) should not exceed its deadline \( D_i \). The response time analysis involves iterative calculation:
+    The response time \( $R_i$ \) for task \( $i$ \) should not exceed its deadline \( $D_i$ \). The response time analysis involves iterative calculation:
 
-    $$
-    R_i = C_i + \sum_{j=1}^{i-1} \left\lceil \frac{R_i}{T_j} \right\rceil C_j
-    $$
+    $R_i = C_i + \sum_{j=1}^{i-1} \left\lceil \frac{R_i}{T_j} \right\rceil C_j$
 
-    The task set is schedulable if \( R_i \leq D_i \) for all tasks.
+    The task set is schedulable if \( $R_i \leq D_i$ \) for all tasks.
 
 ### Earliest Deadline First (EDF)
 
 **Earliest Deadline First** dynamically prioritizes tasks based on the closest deadline: tasks with earlier deadlines are given higher priority.
 
 - **Necessary Condition**:
-  - **Utilization Factor** \( U \) should be \( \leq 1 \):
+  - **Utilization Factor** \( $U$ \) should be \( $\leq 1$ \):
 
-    $$
-    U = \sum_{i=1}^{n} \frac{C_i}{T_i}
-    $$
+    $U = \sum_{i=1}^{n} \frac{C_i}{T_i}$
   
-  - If \( U > 1 \), the task set is not schedulable.
+  - If \( $U > 1$ \), the task set is not schedulable.
 
 - **Sufficient Condition**:
-  - **Utilization Factor** \( U \) should be \( < 1 \):
+  - **Utilization Factor** \( $U$ \) should be \( $\leq 1$ \):
 
-    $$
-    U < 1
-    $$
+    $U < 1$
 
 - **Exact Condition**:
   - **Processor Demand Analysis (PDA)**:
 
-    The processor demand \( \text{Demand}(L) \) for a time \( L \) should be \( \leq L \). 
+    The processor demand \( $\text{Demand}(L)$ \) for a time \( $L$ \) should be \( $\leq L$ \). 
 
-    $$
-    \text{Demand}(L) = \sum_{i=1}^{n} \left\lceil \frac{L}{T_i} \right\rceil C_i
-    $$
+    $\text{Demand}(L) = \sum_{i=1}^{n} \left\lceil \frac{L}{T_i} \right\rceil C_i$
 
-    The task set is schedulable if \( \text{Demand}(L) \leq L \) for all \( L \) from 0 to the maximum period.
+    The task set is schedulable if \( $\text{Demand}(L) \leq L$ \) for all \( $L$ \) from 0 to the maximum period.
 
 ## Parameters
 
