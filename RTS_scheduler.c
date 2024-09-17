@@ -7,15 +7,25 @@ typedef struct {
     double Ci; // Computation Time
     double Ti; // Time Period
     double Di; // Relative Deadline
+    double ai; // Arrival Time (only for EDF)
     int task_id; // Task ID for tracking
 } Task;
 
-void input_tasks(Task tasks[], int num) {
+void input_tasks(Task tasks[], int num, int is_edf) {
     printf("NOTE - For RM Algo, kindly make sure while entering the parameters that the Di = Ti. \n");
     printf("NOTE - Provide values of parameters with space b/w each. \n");
     for (int i = 0; i < num; i++) {
-        printf("Enter Computation time (Ci), Relative deadline (Di), Time period (Ti) for Task %d: ", i + 1);
-        scanf("%lf %lf %lf", &tasks[i].Ci, &tasks[i].Di, &tasks[i].Ti);
+        printf("Enter Computation time (Ci), Relative deadline (Di), Time period (Ti)");
+        if (is_edf) {
+            printf(", and Arrival time (ai)");
+        }
+        printf(" for Task %d: ", i + 1);
+        if (is_edf) {
+            scanf("%lf %lf %lf %lf", &tasks[i].Ci, &tasks[i].Di, &tasks[i].Ti, &tasks[i].ai);
+        } else {
+            scanf("%lf %lf %lf", &tasks[i].Ci, &tasks[i].Di, &tasks[i].Ti);
+            tasks[i].ai = 0; // Set arrival time to 0 for non-EDF tasks
+        }
         tasks[i].task_id = i + 1;
     }
 }
@@ -94,14 +104,16 @@ int response_time_analysis(Task tasks[], int num, int *order, int is_rm) {
     return 1; // Schedulable
 }
 
-// Processor Demand Criterion (PDC) function
+// Processor Demand Criterion (PDC) function, modified to consider arrival times (ai) for EDF
 int processor_demand_criterion(Task tasks[], int num, int *order) {
     for (double L = 0; L <= tasks[num - 1].Ti; L += 0.1) { // Iterate up to the largest time period
         double demand = 0;
         for (int i = 0; i < num; i++) {
-            double t2 = L;
-            double floor_val = floor((t2 - tasks[i].Di + tasks[i].Ti) / tasks[i].Ti);
-            demand += (floor_val + 1) * tasks[i].Ci;
+            if (L >= tasks[i].ai) { // Only consider tasks that have arrived
+                double t2 = L;
+                double floor_val = floor((t2 - tasks[i].Di + tasks[i].Ti) / tasks[i].Ti);
+                demand += (floor_val + 1) * tasks[i].Ci;
+            }
         }
         if (demand > L) {
             return 0; // Not schedulable
@@ -218,24 +230,18 @@ int main() {
     printf("Enter number of tasks: ");
     scanf("%d", &num);
 
-    input_tasks(tasks, num);
-
-    printf("Select scheduling algorithm: (1) RM (2) DM (3) EDF: ");
+    printf("Select scheduling algorithm: 1 - RM, 2 - DM, 3 - EDF: ");
     scanf("%d", &algo);
 
-    switch (algo) {
-        case 1:
-            check_rm(tasks, num);
-            break;
-        case 2:
-            check_dm(tasks, num);
-            break;
-        case 3:
-            check_edf(tasks, num);
-            break;
-        default:
-            printf("Invalid algorithm selection.\n");
-            break;
+    if (algo == 3) {
+        input_tasks(tasks, num, 1); // Input tasks for EDF with arrival times
+        check_edf(tasks, num);
+    } else if (algo == 2) {
+        input_tasks(tasks, num, 0); // Input tasks for DM
+        check_dm(tasks, num);
+    } else {
+        input_tasks(tasks, num, 0); // Input tasks for RM
+        check_rm(tasks, num);
     }
 
     return 0;
