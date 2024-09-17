@@ -94,17 +94,21 @@ int response_time_analysis(Task tasks[], int num, int *order, int is_rm) {
     return 1; // Schedulable
 }
 
-int processor_demand_analysis(Task tasks[], int num, int *order) {
+// Processor Demand Criterion (PDC) function
+int processor_demand_criterion(Task tasks[], int num, int *order) {
     for (double L = 0; L <= tasks[num - 1].Ti; L += 0.1) { // Iterate up to the largest time period
         double demand = 0;
         for (int i = 0; i < num; i++) {
-            demand += ceil(L / tasks[i].Ti) * tasks[i].Ci;
+            double t2 = L;
+            double floor_val = floor((t2 - tasks[i].Di + tasks[i].Ti) / tasks[i].Ti);
+            demand += (floor_val + 1) * tasks[i].Ci;
         }
         if (demand > L) {
             return 0; // Not schedulable
         }
     }
-    // If PDA succeeds, generate order (for EDF, tasks with earliest deadlines first)
+
+    // If PDC succeeds, generate order (for EDF, tasks with earliest deadlines first)
     for (int i = 0; i < num; i++) {
         order[i] = tasks[i].task_id;
     }
@@ -195,15 +199,15 @@ void check_edf(Task tasks[], int num) {
     }
 
     int order[MAX_TASKS];
-    if (U < 1 || processor_demand_analysis(tasks, num, order)) {
-        printf("Task set is Schedulable under EDF with Processor Demand Analysis (PDA).\n");
+    if (processor_demand_criterion(tasks, num, order)) {
+        printf("Task set is Schedulable under EDF with Processor Demand Criterion (PDC).\n");
         printf("Task execution order (EDF): ");
         for (int i = 0; i < num; i++) {
             printf("T%d ", order[i]);
         }
         printf("\n");
     } else {
-        printf("Task set is Not schedulable under EDF.\n");
+        printf("Task set is Not schedulable under EDF using PDC.\n");
     }
 }
 
