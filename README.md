@@ -139,10 +139,10 @@ If this condition holds for all intervals, the task set can be successfully sche
 
 ```
 Enter number of tasks: 3
+Select scheduling algorithm: (1) RM (2) DM (3) EDF: 1
 Enter Computation time (Ci), Relative deadline (Di), Time period (Ti) for Task 1: 2 10 10
 Enter Computation time (Ci), Relative deadline (Di), Time period (Ti) for Task 2: 1 20 20
 Enter Computation time (Ci), Relative deadline (Di), Time period (Ti) for Task 3: 1 30 30
-Select scheduling algorithm: (1) RM (2) DM (3) EDF: 1
 ```
 
 ## Contributing
