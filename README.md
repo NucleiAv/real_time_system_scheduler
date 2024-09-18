@@ -80,14 +80,31 @@ This project provides a C program for analyzing and predicting the schedulabilit
     $U < 1$
 
 - **Exact Condition**:
-  - **Processor Demand Analysis (PDA)**:
+  - **Processor Demand Criteria (PDC)**:
 
-    The processor demand \( $\text{Demand}(L)$ \) for a time \( $L$ \) should be \( $\leq L$ \). 
+    In Earliest Deadline First (EDF) scheduling, the **processor demand criterion** ensures that all tasks can meet their deadlines. It checks if the total CPU utilization required by all tasks within any time interval \([t_1, t_2]\) is less than or equal to the length of that interval.
 
-    $\text{Demand}(L) = \sum_{i=1}^{n} \left\lceil \frac{L}{T_i} \right\rceil C_i$
+The processor demand criterion is given by the following formula:
 
-    The task set is schedulable if \( $\text{Demand}(L) \leq L$ \) for all \( $L$ \) from 0 to the maximum period.
+\[
+\text{Processor Demand} = \sum_{\tau_i \in \text{tasks}} \left( \left\lfloor \frac{t_2 - D_i + T_i}{T_i} \right\rfloor + 1 \right) C_i
+\]
 
+Where:
+- \(\tau_i\) refers to the i-th task.
+- \(C_i\) is the execution time of task \(\tau_i\).
+- \(T_i\) is the period of task \(\tau_i\).
+- \(D_i\) is the relative deadline of task \(\tau_i\).
+- \([t_1, t_2]\) is the interval over which the processor demand is calculated.
+- \(\left\lfloor x \right\rfloor\) denotes the floor function, which returns the greatest integer less than or equal to \(x\).
+
+The EDF scheduling algorithm can schedule tasks feasibly as long as the processor demand over any interval is no more than the length of the interval:
+
+\[
+\text{Processor Demand} \leq (t_2 - t_1)
+\]
+
+If this condition holds for all intervals, the task set can be successfully scheduled using EDF.
 ## Parameters
 
 - **Computation Time (Ci)**: Time required by a task to complete its execution.
