@@ -103,9 +103,10 @@ $\text{Processor Demand} \leq (t_2 - t_1)$
 If this condition holds for all intervals, the task set can be successfully scheduled using EDF.
 ## Parameters
 
-- **Computation Time (Ci)**: Time required by a task to complete its execution.
-- **Period (Ti)**: Time interval between successive releases of the task.
-- **Deadline (Di)**: Time by which the task must be completed.
+- **Computation Time ($C_i$)**: Time required by a task to complete its execution.
+- **Period ($T_i$)**: Time interval between successive releases of the task.
+- **Deadline ($D_i$)**: Time by which the task must be completed.
+- **Arrival Time ($a_i$)**: Time when a task enters.
 
 ## Files
 
