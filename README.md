@@ -1,6 +1,7 @@
 # Real-Time Scheduling Analysis
 
-Initialled and Made by Anmol Vats. Don't forget to ⭐
+Initiated and Made by Anmol Vats. 
+Don't forget to ⭐
 
 ## Overview
 
