@@ -147,7 +147,7 @@ Enter Computation time (Ci), Relative deadline (Di), Time period (Ti) for Task 3
 
 ## Contributing
 
-Feel free to fork the repository and submit pull requests. For any issues or feature requests, please use the [issue tracker](https://github.com/yourusername/RealTimeSchedulingAnalysis/issues).
+Feel free to fork the repository and submit pull requests. For any issues or feature requests, please use the [issue tracker](https://github.com/NucleiAv/real_time_system_scheduler/issues).
 
 ## License
 
