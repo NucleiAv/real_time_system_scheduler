@@ -3,6 +3,8 @@
 Initiated and Made by Anmol Vats. 
 Don't forget to ⭐
 
+**A Real Time Simulation Project is also included - 'Fish' (Check its README.md for more details)** 
+
 ## Overview
 
 This project provides a C program for analyzing and predicting the schedulability of real-time periodic tasks using three common scheduling algorithms:
@@ -145,8 +147,6 @@ Enter Computation time (Ci), Relative deadline (Di), Time period (Ti) for Task 1
 Enter Computation time (Ci), Relative deadline (Di), Time period (Ti) for Task 2: 1 20 20
 Enter Computation time (Ci), Relative deadline (Di), Time period (Ti) for Task 3: 1 30 30
 ```
-# A Real Time Simulation Project is also included - 'Fish' (Check its README.md for more details)
-
 ## Contributing
 
 Feel free to fork the repository and submit pull requests. For any issues or feature requests, please use the [issue tracker](https://github.com/NucleiAv/real_time_system_scheduler/issues).
