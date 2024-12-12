@@ -15,6 +15,10 @@ Thus there are 2 tasks majorly - periodic (fish) and aperiodic (predator). Since
 
 
 ## Video Simulation
+
+**Click on the below image to get redirected to the video simulation.**
+
+
 [![Video](https://github.com/user-attachments/assets/90d78094-6b52-4d29-b094-02afaf549cd7)](https://youtu.be/fBIX9BvheSw)
 
 
