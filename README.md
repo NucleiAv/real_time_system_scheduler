@@ -10,6 +10,7 @@ This project provides a C program for analyzing and predicting the schedulabilit
 - Deadline-Monotonic (DM)
 - Earliest Deadline First (EDF)
 
+### A Real Time Simulation Project is also available in my GitHub. The Link - 
 ## Algorithms
 
 ### Rate-Monotonic Scheduling (RM)
