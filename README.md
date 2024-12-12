@@ -10,7 +10,6 @@ This project provides a C program for analyzing and predicting the schedulabilit
 - Deadline-Monotonic (DM)
 - Earliest Deadline First (EDF)
 
-### A Real Time Simulation Project is also available in my GitHub. The Link - 
 ## Algorithms
 
 ### Rate-Monotonic Scheduling (RM)
@@ -146,6 +145,7 @@ Enter Computation time (Ci), Relative deadline (Di), Time period (Ti) for Task 1
 Enter Computation time (Ci), Relative deadline (Di), Time period (Ti) for Task 2: 1 20 20
 Enter Computation time (Ci), Relative deadline (Di), Time period (Ti) for Task 3: 1 30 30
 ```
+# A Real Time Simulation Project is also included - 'Fish' (Check its README.md for more details)
 
 ## Contributing
 
