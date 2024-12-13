@@ -1,5 +1,6 @@
 # Fish
 This is a real time simulating project about the swarm behavior. 
+
 **Problem Statement** - Simulate a school of fishes exhibiting a swarm behavior, where a leader moves pseudo randomly and the other fishes follow the neighbors (also with some random factor). Fishes can also recognize the presence of a predator so they can escape from it. The predator can be introduced and animated by the user through the mouse pointer.
 
 We have used the Rate Monotonic (RM) Scheduling Algo for Multi-threads. The Kernel is set to work on FIFO to minimize its interferance in our coustomization in the code.
